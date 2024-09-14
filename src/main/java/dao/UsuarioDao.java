@@ -59,7 +59,7 @@ public class UsuarioDao {
 	
 	private static boolean verificarUsuarioExistente(Usuario usuario){
 		EntityManager em = JPAUtil.criarEntityManager();
-        Query q = em.createQuery("select u from Usuario u where u.nome = :nome or u.dataNascimento = :dataNascimento");
+        Query q = em.createQuery("select u from Usuario u where u.nome = :nome and u.dataNascimento = :dataNascimento");
 
 		q.setParameter("nome", usuario.getNome());
 		q.setParameter("dataNascimento", usuario.getDataNascimento());
