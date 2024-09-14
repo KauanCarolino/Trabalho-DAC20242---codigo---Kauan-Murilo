@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -10,6 +11,9 @@ import util.JPAUtil;
 
 public class UsuarioDao {
 	public static void salvar(Usuario usuario) {
+		if (verificarUsuarioExistente(usuario)) {
+			throw new RuntimeException("Já existe um usuário com o mesmo nome e data de nascimento.");
+		}
 		EntityManager em = JPAUtil.criarEntityManager();
 		em.getTransaction().begin();
 		em.persist(usuario);
@@ -18,6 +22,9 @@ public class UsuarioDao {
 	}
 	
 	public static void editar(Usuario usuario) {
+		if (verificarUsuarioExistente(usuario)) {
+			throw new RuntimeException("Já existe um usuário com o mesmo nome e data de nascimento.");
+		}
 		EntityManager em = JPAUtil.criarEntityManager();
 		em.getTransaction().begin();
 		em.merge(usuario);
@@ -48,5 +55,18 @@ public class UsuarioDao {
 		em.close();
 		return lista;
 		
+	}
+	
+	private static boolean verificarUsuarioExistente(Usuario usuario){
+		EntityManager em = JPAUtil.criarEntityManager();
+        Query q = em.createQuery("select u from Usuario u where u.nome = :nome or u.dataNascimento = :dataNascimento");
+
+		q.setParameter("nome", usuario.getNome());
+		q.setParameter("dataNascimento", usuario.getDataNascimento());
+		
+		List<Usuario> resultados = q.getResultList();
+		em.close();
+        return !resultados.isEmpty() && (resultados.size() > 1 || !resultados.get(0).getId().equals(usuario.getId()));
+
 	}
 }

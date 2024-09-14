@@ -21,4 +21,14 @@ public class UsuarioBean {
 		UsuarioDao.salvar(usuario);
 	}
 	
+	public void editar() {
+		UsuarioDao.editar(usuario);
+	}
+	
+	public void carregarUsuario() {
+		if (usuario != null) {
+			
+		}
+	}
+	
 }
