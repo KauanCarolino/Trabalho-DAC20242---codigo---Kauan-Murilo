@@ -14,7 +14,7 @@ public class Usuario {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	@Column(name = "Nome Complete")
+	@Column(name = "nome_complete")
 	private String nome;
 	private String sexo;
 	private String senha;
