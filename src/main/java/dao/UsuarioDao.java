@@ -2,7 +2,7 @@ package dao;
 
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
+//import javax.management.RuntimeErrorException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -11,9 +11,9 @@ import util.JPAUtil;
 
 public class UsuarioDao {
 	public static void salvar(Usuario usuario) {
-		if (verificarUsuarioExistente(usuario)) {
-			throw new RuntimeException("Já existe um usuário com o mesmo nome e data de nascimento.");
-		}
+//		if (verificarUsuarioExistente(usuario)) {
+//			throw new RuntimeException("Já existe um usuário com o mesmo nome e data de nascimento.");
+//		}
 		EntityManager em = JPAUtil.criarEntityManager();
 		em.getTransaction().begin();
 		em.persist(usuario);
@@ -22,9 +22,9 @@ public class UsuarioDao {
 	}
 	
 	public static void editar(Usuario usuario) {
-		if (verificarUsuarioExistente(usuario)) {
-			throw new RuntimeException("Já existe um usuário com o mesmo nome e data de nascimento.");
-		}
+//		if (verificarUsuarioExistente(usuario)) {
+//			throw new RuntimeException("Já existe um usuário com o mesmo nome e data de nascimento.");
+//		}
 		EntityManager em = JPAUtil.criarEntityManager();
 		em.getTransaction().begin();
 		em.merge(usuario);
@@ -34,9 +34,9 @@ public class UsuarioDao {
 	
 	public static Usuario achar(Integer id) {
 		EntityManager em = JPAUtil.criarEntityManager();
-		Usuario pessoa = em.find(Usuario.class, id);
+		Usuario usuario = em.find(Usuario.class, id);
 		em.close();
-		return pessoa;
+		return usuario;
 	}
 	
 	public static void Deletar(Usuario usuario) {
@@ -50,23 +50,25 @@ public class UsuarioDao {
 	
 	public static List<Usuario> ListarTodos(){
 		EntityManager em = JPAUtil.criarEntityManager();
-		Query q = em.createQuery("select a from Pessoa a");
+		Query q = em.createQuery("select a from Usuario a");
 		List<Usuario> lista = q.getResultList();
 		em.close();
 		return lista;
 		
 	}
 	
-	private static boolean verificarUsuarioExistente(Usuario usuario){
-		EntityManager em = JPAUtil.criarEntityManager();
-        Query q = em.createQuery("select u from Usuario u where u.nome = :nome and u.dataNascimento = :dataNascimento");
+//	public static boolean verificarUsuarioExistente(Usuario usuario) {
+//	    EntityManager em = JPAUtil.criarEntityManager();
+//	    // Consulta para verificar a existência de usuários com o mesmo nome e data de nascimento
+//	    Query q = em.createQuery("select u from Usuario u where u.nome = :nome and u.dataNascimento = :dataNascimento");
+//	    q.setParameter("nome", usuario.getNome());
+//	    q.setParameter("dataNascimento", usuario.getDataNascimento());
+//
+//	    List<Usuario> resultados = q.getResultList();
+//	    em.close();
+//	    
+//	    // Verifica se há outros usuários com o mesmo nome e data de nascimento, exceto o próprio usuário
+//	    return !resultados.isEmpty() && (resultados.size() > 1 || (resultados.size() == 1 && !resultados.get(0).getId().equals(usuario.getId())));
+//	}
 
-		q.setParameter("nome", usuario.getNome());
-		q.setParameter("dataNascimento", usuario.getDataNascimento());
-		
-		List<Usuario> resultados = q.getResultList();
-		em.close();
-        return !resultados.isEmpty() && (resultados.size() > 1 || !resultados.get(0).getId().equals(usuario.getId()));
-
-	}
 }

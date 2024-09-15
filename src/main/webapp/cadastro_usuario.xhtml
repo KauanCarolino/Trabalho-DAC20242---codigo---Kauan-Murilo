@@ -9,30 +9,54 @@
 
     <h:head>
         <title>Hello World!</title>
+        <style>
+            body, html {
+                height: 100%;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                background-color: #f4f4f9;
+            }
+            .form-container {
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            p:panelGrid {
+                width: 100%;
+            }
+        </style>
     </h:head>
     
     <h:body>
-        <h:form>
+        <h:form class="form-container">
+             <p:growl id="messages" showDetail="true" />
+            <p:growl id="msgs" showDetail="true" />
+            
             <p:panelGrid columns="2">
                 <p:outputLabel for="username" value="Nome de Usuario"/>
                 <p:inputText id="username" value="#{usuarioBean.usuario.nome}"/>
                 
-			    <p:outputLabel for="sexoMenu" value="Sexo"/>
-			    <p:selectOneMenu id="sexoMenu" value="#{usuarioBean.usuario.sexo}">
-			        <f:selectItem itemLabel="-----------" itemValue=""/>
-			        <f:selectItem itemLabel="Masculino" itemValue="M"/>
-			        <f:selectItem itemLabel="Feminino" itemValue="F"/>
-			    </p:selectOneMenu>
-            
+                <p:outputLabel for="sexoMenu" value="Sexo"/>
+                <p:selectOneMenu id="sexoMenu" value="#{usuarioBean.usuario.sexo}">
+                    <f:selectItem itemLabel="-----------" itemValue=""/>
+                    <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                    <f:selectItem itemLabel="Feminino" itemValue="F"/>
+                </p:selectOneMenu>
+                
                 <p:outputLabel for="password" value="Senha"/>
                 <p:password id="password" value="#{usuarioBean.usuario.senha}" toggleMask="true" redisplay="true"/>      
                 
-                <p:outputLabel for="date" value="Data de Nascimento" />
-				<p:datePicker id="date" value="#{usuarioBean.usuario.dataNascimento}" />
+                <p:outputLabel for="date" value="Data de Nascimento"/>
+                <p:datePicker id="date" value="#{usuarioBean.usuario.dataNascimento}"/>
                 
-				<p:commandButton value="Salvar" action="#{usuarioBean.salvar()}" update="@form" ajax="true"/>
+                <p:commandButton value="Salvar" action="#{usuarioBean.salvarCad()}" update="@form" ajax="true"/>
+                <br></br>
+                <p:linkButton outcome="listagem_usuario" value="Listagem"  />
+                
             </p:panelGrid>
         </h:form>
-
     </h:body>
 </html>
