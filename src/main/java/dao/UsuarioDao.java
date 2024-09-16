@@ -57,6 +57,15 @@ public class UsuarioDao {
 		
 	}
 	
+	public static long contarUsuarios() {
+	    EntityManager em = JPAUtil.criarEntityManager();
+	    Query q = em.createQuery("SELECT COUNT(u) FROM Usuario u");
+	    long totalUsuarios = (long) q.getSingleResult();
+	    em.close();
+	    return totalUsuarios;
+	}
+
+	
 //	public static boolean verificarUsuarioExistente(Usuario usuario) {
 //	    EntityManager em = JPAUtil.criarEntityManager();
 //	    // Consulta para verificar a existência de usuários com o mesmo nome e data de nascimento

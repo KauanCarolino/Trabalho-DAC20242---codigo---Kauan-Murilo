@@ -17,6 +17,7 @@ public class UsuarioBean {
     private Usuario usuarioSelecionado; 
     private List<Usuario> usuarios;
     private boolean editing = false;
+    private long totalUsuarios;
 
     public Usuario getUsuario() {
         return usuario;
@@ -109,5 +110,13 @@ public class UsuarioBean {
             }
         }
         return false;
+    }
+    
+    public long getTotalUsuarios() {
+    	return totalUsuarios;
+    }
+    
+    public void contarUsuarios() {
+    	totalUsuarios = UsuarioDao.contarUsuario();
     }
 }

@@ -113,6 +113,13 @@
                     </h:outputText>
                 </h:panelGrid>
             </p:dialog>
+            
+            <p:commandButton value="Contar Usuários" icon="pi pi-users" 
+                             action="#{usuarioBean.contarUsuarios}" 
+                             update=":usuarioForm:totalUsuariosLabel" 
+                             style="margin-top: 20px" />
+            <h:outputText id="totalUsuariosLabel" value="Total de usuários: #{usuarioBean.totalUsuarios}" 
+                          style="font-weight: bold; margin-top: 10px" />                 
         </h:form>
     </h:body>
 </html>
