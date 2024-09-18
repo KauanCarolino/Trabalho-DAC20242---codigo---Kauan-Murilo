@@ -82,7 +82,7 @@ public class UsuarioBean {
             salvar(); // Salva as alterações e desativa o modo de edição
         } else {
             this.usuarioSelecionado = usuario;
-            this.usuario = usuario; // Populate form with the selected user's data
+            this.usuario = usuario; // Preencher o formulário com os dados do usuário selecionado
             this.editing = true; // Ativa o modo de edição
         }
     }
