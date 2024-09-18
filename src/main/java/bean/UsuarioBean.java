@@ -117,6 +117,6 @@ public class UsuarioBean {
     }
     
     public void contarUsuarios() {
-    	totalUsuarios = UsuarioDao.contarUsuario();
+    	totalUsuarios = UsuarioDao.contarUsuarios();
     }
 }

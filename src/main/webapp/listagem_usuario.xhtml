@@ -75,15 +75,15 @@
                 </p:column>
 
                 <p:column headerText="Ações">
-                    <p:commandButton value="Deletar" icon="pi pi-trash" 
-                                     action="#{usuarioBean.deletar(usuario)}" 
-                                     update=":usuarioForm" 
-                                     style="margin-top: 20px"/>
-                    
                     <p:commandButton value="#{usuarioBean.editing and usuarioBean.usuarioSelecionado.id eq usuario.id ? 'Salvar' : 'Editar'}" icon="#{usuarioBean.editing and usuarioBean.usuarioSelecionado.id eq usuario.id ? 'pi pi-save' : 'pi pi-pencil'}" 
                                      action="#{usuarioBean.editMode(usuario)}" 
                                      update=":usuarioForm" 
-                                     style="margin-top: 20px"/>
+                                     style="margin-top: 20px; margin-right: 20px"/>
+                
+                    <p:commandButton value="Deletar" icon="pi pi-trash" 
+                                     action="#{usuarioBean.deletar(usuario)}" 
+                                     update=":usuarioForm" 
+                                     style="margin-top: 20px;"/>
                                      
 					<p:commandButton value="Visualizar" icon="pi pi-search" 
                                      oncomplete="PF('dlgVisualizar').show()" 
@@ -114,10 +114,12 @@
                 </h:panelGrid>
             </p:dialog>
             
+            <p:linkButton outcome="cadastro_usuario" value="Cadastro"  />
+            
             <p:commandButton value="Contar Usuários" icon="pi pi-users" 
                              action="#{usuarioBean.contarUsuarios}" 
                              update=":usuarioForm:totalUsuariosLabel" 
-                             style="margin-top: 20px" />
+                             style="margin-top: 20px; margin-left: 20px;" />
             <h:outputText id="totalUsuariosLabel" value="Total de usuários: #{usuarioBean.totalUsuarios}" 
                           style="font-weight: bold; margin-top: 10px" />                 
         </h:form>
