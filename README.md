@@ -34,8 +34,6 @@ Este projeto tem como objetivo a criação de um sistema para gerenciar usuário
 ### Como configurar
 https://www.youtube.com/watch?v=BgSN4j6Zwwg
 
-### Tutorial de configurações
-
 ### Passos
 
 1. **Configuração do Banco de Dados**:
